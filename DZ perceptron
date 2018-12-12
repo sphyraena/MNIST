@@ -85,4 +85,4 @@ for images, labels in test_loader:
     correct += (predicted == labels).sum()
 
     
-print('tochnost' dlya 10K sostavlyaet: %d %%' % (100 * correct / total))
+print('tochnost dlya 10K sostavlyaet:' %d %%' % (100 * correct / total))
