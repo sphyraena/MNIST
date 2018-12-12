@@ -44,7 +44,6 @@ test_loader = torch.utils.data.DataLoader(
     batch_size=batch_size,
     shuffle=False
 )
-
 class Net(nn.Module):
     def __init__(self, input_size, hidden_size, num_classes):
         super(Net, self).__init__()
@@ -56,8 +55,6 @@ class Net(nn.Module):
         out = self.relu(out)
         out = self.fc2(out)
         return out
-
-
 net = Net(input_size, hidden_size, num_classes)
 net = Net(input_size, hidden_size, num_classes)
 net.cuda()
@@ -71,7 +68,6 @@ for epoch in range(num_epochs):
         loss = criterion(outputs, labels)
         loss.backward()
         optimizer.step()
-        
         if (i+1) % 100 == 0:
             print('Epoch [%d/%d], Step [%d/%d], Loss: %.4f'
                  %(epoch+1, num_epochs, i+1, len(train_dataset)//batch_size, loss.data[0]))
@@ -83,6 +79,6 @@ for images, labels in test_loader:
     _, predicted = torch.max(outputs.data, 1)
     total += labels.size(0)
     correct += (predicted == labels).sum()
-
-    
 print('tochnost dlya 10K sostavlyaet:' %d %%' % (100 * correct / total))
+torch.save(net.state_dict(), 'perceptron.pkl')
+python perceptron.py
